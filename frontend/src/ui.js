@@ -98,7 +98,7 @@ export const PipelineUI = () => {
 
   return (
     <>
-      <div ref={reactFlowWrapper} style={{ width: '100wv', height: '70vh' }}>
+      <div ref={reactFlowWrapper} style={{ width: '100wv', height: '100vh' }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -111,6 +111,8 @@ export const PipelineUI = () => {
           nodeTypes={nodeTypes}
           proOptions={proOptions}
           snapGrid={[gridSize, gridSize]}
+          deleteKeyCode="Delete"
+          multiSelectionKeyCode="shift"
           connectionLineType='smoothstep'
         >
           <Background color="#aaa" gap={gridSize} />

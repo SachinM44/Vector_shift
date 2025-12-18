@@ -41,7 +41,14 @@ export const nodeConfigs = {
             { id: 'response', position: 'right' }
         ],
 
-        fields: [],
+        fields: [
+            {
+                type: 'text',
+                name: 'modelName',
+                label: 'Model',
+                defaultValue: 'GPT-4',
+            }
+        ],
     },
 
     customOutput: {

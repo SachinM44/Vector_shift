@@ -4,12 +4,22 @@ import { SubmitButton } from './submit';
 
 function App() {
   return (
-    <div>
+    <div style={styles.app}>
       <PipelineToolbar />
       <PipelineUI />
-      <SubmitButton />
+      
     </div>
   );
 }
+
+const styles = {
+  app: {
+    width: '100vw',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    background: '#f8fafc',
+  },
+};
 
 export default App;

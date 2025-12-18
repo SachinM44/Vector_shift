@@ -83,7 +83,6 @@ export const BaseNode = ({ id, data }) => {
 
     return (
         <div style={styles.nodeContainer}>
-            {/* Input handles */}
             {config.inputs?.map((input) => (
                 <Handle
                     key={input.id}
@@ -99,28 +98,33 @@ export const BaseNode = ({ id, data }) => {
             ))}
 
             {/* Header */}
-            <div style={{
-                ...styles.header,
-                borderLeftColor: nodeColor,
-            }}>
+            <div style={styles.header}>
                 <span style={styles.headerText}>{config.label}</span>
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                    }}
+                    style={styles.deleteButton}
+                    title="Press Delete key to remove"
+                >
+                    ×
+                </button>
             </div>
 
-            {/* Description */}
+
+
             {config.description && (
                 <div style={styles.description}>
                     {config.description}
                 </div>
             )}
 
-            {/* Fields */}
             {config.fields && config.fields.length > 0 && (
                 <div style={styles.fieldsContainer}>
                     {config.fields.map(field => renderField(field))}
                 </div>
             )}
 
-            {/* Output handles */}
             {config.outputs?.map((output) => (
                 <Handle
                     key={output.id}
@@ -135,97 +139,116 @@ export const BaseNode = ({ id, data }) => {
                 />
             ))}
         </div>
+
     );
 };
 
-// Styles (clean, VectorShift-inspired)
 const styles = {
     nodeContainer: {
         background: theme.colors.surface,
         border: `1px solid ${theme.colors.border}`,
-        borderRadius: theme.borderRadius.lg,
+        borderRadius: '4px',
         minWidth: '200px',
-        boxShadow: theme.shadows.md,
+        boxShadow: theme.shadows.sm,
         fontFamily: theme.typography.fontFamily,
     },
 
     header: {
+        position: 'relative',
         padding: `${theme.spacing.sm} ${theme.spacing.md}`,
         borderBottom: `1px solid ${theme.colors.border}`,
-        borderLeft: `3px solid`,
-        borderTopLeftRadius: theme.borderRadius.lg,
-        borderTopRightRadius: theme.borderRadius.lg,
+        background: theme.colors.surface,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
 
     headerText: {
+
         color: theme.colors.text.primary,
-        fontSize: theme.typography.fontSize.base,
+        fontSize: theme.typography.fontSize.sm,
         fontWeight: theme.typography.fontWeight.semibold,
     },
 
     description: {
         padding: `${theme.spacing.xs} ${theme.spacing.md}`,
         color: theme.colors.text.secondary,
-        fontSize: theme.typography.fontSize.sm,
+        fontSize: theme.typography.fontSize.xs,
         borderBottom: `1px solid ${theme.colors.border}`,
     },
 
     fieldsContainer: {
-        padding: theme.spacing.md,
+        padding: theme.spacing.xl,
     },
 
     fieldContainer: {
-        marginBottom: theme.spacing.sm,
+        marginBottom: theme.spacing.md,
     },
 
     label: {
         display: 'block',
         color: theme.colors.text.secondary,
-        fontSize: theme.typography.fontSize.sm,
+        fontSize: theme.typography.fontSize.xs,
         marginBottom: theme.spacing.xs,
         fontWeight: theme.typography.fontWeight.medium,
     },
 
     input: {
         width: '100%',
-        padding: theme.spacing.sm,
+        padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
         background: theme.colors.surface,
-        border: `1px solid ${theme.colors.border}`,
-        borderRadius: theme.borderRadius.md,
+        border: `1px solid #cbd5e1`,
+        borderRadius: '4px',
         color: theme.colors.text.primary,
-        fontSize: theme.typography.fontSize.sm,
+        fontSize: theme.typography.fontSize.xs,
         outline: 'none',
         fontFamily: theme.typography.fontFamily,
+        boxSizing: 'border-box',
     },
 
     select: {
         width: '100%',
-        padding: theme.spacing.sm,
+        padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
         background: theme.colors.surface,
-        border: `1px solid ${theme.colors.border}`,
-        borderRadius: theme.borderRadius.md,
+        border: `1px solid #cbd5e1`,
+        borderRadius: '4px',
         color: theme.colors.text.primary,
-        fontSize: theme.typography.fontSize.sm,
+        fontSize: theme.typography.fontSize.xs,
         outline: 'none',
         cursor: 'pointer',
+        boxSizing: 'border-box',
     },
 
     textarea: {
         width: '100%',
-        padding: theme.spacing.sm,
+        padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
         background: theme.colors.surface,
         border: `1px solid ${theme.colors.border}`,
-        borderRadius: theme.borderRadius.md,
+        borderRadius: '4px',
         color: theme.colors.text.primary,
-        fontSize: theme.typography.fontSize.sm,
+        fontSize: theme.typography.fontSize.xs,
         outline: 'none',
         resize: 'vertical',
         fontFamily: theme.typography.fontFamily,
     },
 
     handle: {
-        width: '10px',
-        height: '10px',
+        width: '8px',
+        height: '8px',
+        background: theme.colors.primary,  // Simple blue
         border: `2px solid ${theme.colors.surface}`,
     },
+
+    deleteButton: {
+        background: 'transparent',
+        border: 'none',
+        color: theme.colors.text.secondary,
+        fontSize: '20px',
+        cursor: 'pointer',
+        padding: '0 4px',
+        lineHeight: 1,
+    },
+
 };
+
+

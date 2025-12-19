@@ -19,15 +19,7 @@ export const theme = {
         danger: '#ef4444',
 
         nodeAccents: {
-            input: '#3b82f6',
-            output: '#10b981',
-            llm: '#8b5cf6',
-            text: '#f59e0b',
-            api: '#06b6d4',
-            database: '#ec4899',
-            transform: '#14b8a6',
-            filter: '#f97316',
-            merge: '#a855f7',
+            input: '#3b82f6'
         },
     },
 
@@ -66,10 +58,6 @@ export const theme = {
         lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
     },
 
-    transitions: {
-        fast: '150ms ease',
-        normal: '300ms ease',
-    },
 };
 
 export const getNodeColor = (nodeType) => {

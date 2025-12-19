@@ -1,4 +1,3 @@
-// frontend/src/nodes/textNode.js
 
 import { useState, useEffect, useRef } from 'react';
 import { Handle, Position } from 'reactflow';
@@ -10,13 +9,11 @@ export const TextNode = ({ id, data }) => {
   const [variables, setVariables] = useState([]);
   const textareaRef = useRef(null);
 
-  // Parse variables whenever text changes
   useEffect(() => {
     const detectedVars = parseVariables(text);
     setVariables(detectedVars);
   }, [text]);
 
-  // Auto-resize textarea based on content
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -28,7 +25,6 @@ export const TextNode = ({ id, data }) => {
     setText(e.target.value);
   };
 
-  // Calculate handle positions for multiple variables
   const getHandlePosition = (index, total) => {
     if (total === 1) return '50%';
     const spacing = 80 / (total + 1);
@@ -37,7 +33,6 @@ export const TextNode = ({ id, data }) => {
 
   return (
     <div style={styles.nodeContainer}>
-      {/* Dynamic input handles for each variable */}
       {variables.map((variable, index) => (
         <Handle
           key={variable}
@@ -51,21 +46,10 @@ export const TextNode = ({ id, data }) => {
         />
       ))}
 
-      {/* Header */}
       <div style={styles.header}>
         <span style={styles.headerText}>Text</span>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          style={styles.deleteButton}
-          title="Press Delete key to remove"
-        >
-          ×
-        </button>
       </div>
 
-      {/* Text input area */}
       <div style={styles.content}>
         <label style={styles.label}>Text:</label>
         <textarea
@@ -77,7 +61,6 @@ export const TextNode = ({ id, data }) => {
           rows={1}
         />
 
-        {/* Show detected variables */}
         {variables.length > 0 && (
           <div style={styles.variablesInfo}>
             <span style={styles.variablesLabel}>Variables:</span>
@@ -92,7 +75,6 @@ export const TextNode = ({ id, data }) => {
         )}
       </div>
 
-      {/* Output handle */}
       <Handle
         type="source"
         position={Position.Right}
@@ -115,13 +97,9 @@ const styles = {
   },
 
   header: {
-    position: 'relative',
     padding: `${theme.spacing.sm} ${theme.spacing.md}`,
     borderBottom: `1px solid ${theme.colors.border}`,
     background: theme.colors.surface,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
 
   headerText: {
@@ -156,7 +134,7 @@ const styles = {
     minHeight: '60px',
     maxHeight: '300px',
     overflow: 'auto',
-    boxSizing: 'border-box',  // ← IMPORTANT!
+    boxSizing: 'border-box',  
   },
 
   variablesInfo: {
@@ -195,15 +173,5 @@ const styles = {
     height: '8px',
     background: theme.colors.primary,
     border: `2px solid ${theme.colors.surface}`,
-  },
-
-  deleteButton: {
-    background: 'transparent',
-    border: 'none',
-    color: theme.colors.text.secondary,
-    fontSize: '20px',
-    cursor: 'pointer',
-    padding: '0 4px',
-    lineHeight: 1,
   },
 };

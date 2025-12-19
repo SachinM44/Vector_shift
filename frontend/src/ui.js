@@ -11,7 +11,7 @@ import 'reactflow/dist/style.css';
 import { APINode } from './nodes/apiNode';
 import { DatabaseNode } from './nodes/databaseNode';
 import { MergeNode } from './nodes/mergeNode';
-import { LLmNode } from './nodes/llmNode';
+import { LLMNode } from './nodes/llmNode';
 import { TransformNode } from './nodes/transformNode';
 import { FilterNode } from './nodes/filterNode';
 
@@ -19,7 +19,7 @@ const gridSize = 20;
 const proOptions = { hideAttribution: true };
 const nodeTypes = {
   customInput: InputNode,
-  llm: LLmNode,
+  llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
   api: APINode,

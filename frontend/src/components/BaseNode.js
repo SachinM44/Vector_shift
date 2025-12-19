@@ -1,13 +1,11 @@
-// frontend/src/components/BaseNode.js
 
 import { useState } from 'react';
 import { Handle, Position } from 'reactflow';
-import { theme, getNodeColor } from '../styles/theme';
+import { theme } from '../styles/theme';
 
 export const BaseNode = ({ id, data }) => {
     const config = data.config;
 
-    // Initialize field values
     const [fieldValues, setFieldValues] = useState(() => {
         const initial = {};
         config.fields?.forEach(field => {
@@ -19,7 +17,6 @@ export const BaseNode = ({ id, data }) => {
         return initial;
     });
 
-    // Handle field changes
     const handleFieldChange = (fieldName, value) => {
         setFieldValues(prev => ({
             ...prev,
@@ -27,7 +24,6 @@ export const BaseNode = ({ id, data }) => {
         }));
     };
 
-    // Render field based on type
     const renderField = (field) => {
         const value = fieldValues[field.name] || '';
 
@@ -79,8 +75,6 @@ export const BaseNode = ({ id, data }) => {
         }
     };
 
-    const nodeColor = getNodeColor(config.type);
-
     return (
         <div style={styles.nodeContainer}>
             {config.inputs?.map((input) => (
@@ -92,23 +86,12 @@ export const BaseNode = ({ id, data }) => {
                     style={{
                         ...styles.handle,
                         ...input.style,
-                        background: nodeColor,
                     }}
                 />
             ))}
 
-            {/* Header */}
             <div style={styles.header}>
                 <span style={styles.headerText}>{config.label}</span>
-                <button
-                    onClick={(e) => {
-                        e.stopPropagation();
-                    }}
-                    style={styles.deleteButton}
-                    title="Press Delete key to remove"
-                >
-                    ×
-                </button>
             </div>
 
 
@@ -134,7 +117,6 @@ export const BaseNode = ({ id, data }) => {
                     style={{
                         ...styles.handle,
                         ...output.style,
-                        background: nodeColor,
                     }}
                 />
             ))}
@@ -154,13 +136,9 @@ const styles = {
     },
 
     header: {
-        position: 'relative',
         padding: `${theme.spacing.sm} ${theme.spacing.md}`,
         borderBottom: `1px solid ${theme.colors.border}`,
         background: theme.colors.surface,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
     },
 
     headerText: {
@@ -204,7 +182,7 @@ const styles = {
         outline: 'none',
         fontFamily: theme.typography.fontFamily,
         boxSizing: 'border-box',
-    },
+    }, 
 
     select: {
         width: '100%',
@@ -235,18 +213,8 @@ const styles = {
     handle: {
         width: '8px',
         height: '8px',
-        background: theme.colors.primary,  // Simple blue
+        background: theme.colors.primary,
         border: `2px solid ${theme.colors.surface}`,
-    },
-
-    deleteButton: {
-        background: 'transparent',
-        border: 'none',
-        color: theme.colors.text.secondary,
-        fontSize: '20px',
-        cursor: 'pointer',
-        padding: '0 4px',
-        lineHeight: 1,
     },
 
 };

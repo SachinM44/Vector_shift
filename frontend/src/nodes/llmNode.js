@@ -3,7 +3,7 @@ import { nodeConfigs } from "./nodeConfigs"
 
 
 
-export const LLmNode = ({ id, data }) => {
+export const LLMNode = ({ id, data }) => {
   return (
     <BaseNode
       id={id}
